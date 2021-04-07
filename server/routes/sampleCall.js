@@ -22,7 +22,7 @@ const replaceObj = () => {
 router.get('/', async (req, res, next) => {
   // res.send({ title: 'title' })
   const AUTH_URL = config.get('PORT');
-  const url = encodeURI(`https://axiomappeals-test.guidewellsource.com/CommonServices/useridentifyapi/secureAuthenticateUser`);
+  const url = encodeURI(`http://localhost:${AUTH_URL}/anand`);
   // logger.debug(`calling ${url}`);
   axios
     .get(url)
