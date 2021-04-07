@@ -1,0 +1,5 @@
+{
+  "BASE_API_URL": "https://api-tsta.fcso.com",
+  "AUTH_URL": "https://api-auth.fcso.com",
+  "PORT": "3200"
+}

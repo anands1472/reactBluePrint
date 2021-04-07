@@ -1,0 +1,86 @@
+{
+  "anand": [
+    {
+      "id": 1,
+      "first_name": "Customer_1",
+      "last_name": "Customer_11",
+      "email": "customer1@mail.com",
+      "phone": "00000000000",
+      "address": "Customer_1 Address",
+      "description": "Customer_1 description"
+    },
+    {
+      "id": 2,
+      "first_name": "Customer_2",
+      "last_name": "Customer_2",
+      "email": "customer2@mail.com",
+      "phone": "00000000000",
+      "address": "Customer_2 Adress",
+      "description": "Customer_2 Description"
+    },
+    {
+      "first_name": "Aashish",
+      "last_name": "Dahal",
+      "email": "aashdahal@gmail.com",
+      "phone": "9849949608",
+      "address": "Thimi, Bhaktapur",
+      "description": "No description",
+      "id": 3
+    }
+  ],
+  "userData": [
+    {
+      "racf": "J3BN",
+      "userName": "Anand, Pilli",
+      "lob": ["A", "B"],
+      "jurisdiction": ["JH", "JN"],
+      "queues": [
+        {
+          "queue": "Receipts",
+          "subQueue": ["Unsolicited MSP", "Solicited Non MSP"]
+        },
+        {
+          "queue": "Cashier",
+          "subQueue": ["Allocation"]
+        }
+      ]
+    },
+    {
+      "racf": "K0UB",
+      "userName": "Kale, Priya",
+      "lob": ["A", "B"],
+      "jurisdiction": ["JH", "JN"],
+      "queues": [
+        {
+          "queue": "Receipts",
+          "subQueue": ["Unsolicited MSP", "Solicited Non MSP"]
+        },
+        {
+          "queue": "Cashier",
+          "subQueue": ["Allocation"]
+        }
+      ]
+    },
+    {
+      "racf": "I5CK",
+      "userName": "Chintalapuri, Vikram",
+      "lob": ["A", "B"],
+      "jurisdiction": ["JH", "JN", "JL"],
+      "queues": [
+        {
+          "queue": "Receipts",
+          "subQueue": [
+            "Solicited MSP",
+            "UNSolicited Non MSP",
+            "Unsolicited MSP",
+            "Solicited Non MSP"
+          ]
+        },
+        {
+          "queue": "Cashier",
+          "subQueue": ["Allocation"]
+        }
+      ]
+    }
+  ]
+}
