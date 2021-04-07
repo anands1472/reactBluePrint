@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import getHome from "../../Store/Actions/HomeActions";
 import { useDispatch } from "react-redux";
 
+import Header from "../../components/Header";
+import Main from "../../components/Main";
+import Footer from "../../components/Footer";
+
 const Home = ({ getPostsCall, getHomeCall, home }) => {
   useEffect(() => {
     // getPostsCall();
@@ -16,21 +20,19 @@ const Home = ({ getPostsCall, getHomeCall, home }) => {
   const reduxPostcall = () => dispatch(getPosts());
   const reduxHomeCall = () => dispatch(getHome());
 
-  console.log("home.........", home && home.home);
-
-  return <div>Welcome to Home Page</div>;
+  return (
+    <div>
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    home: state.home
+    home: state.home,
   };
 };
-
-// const mapDispatchToProps = dispatch => ({
-//   getPostsCall: () => dispatch(getPosts()),
-//   getHomeCall: () => dispatch(getHome())
-// });
-
 export default connect(mapStateToProps)(Home);
