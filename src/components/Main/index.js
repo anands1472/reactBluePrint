@@ -1,58 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import Table from '../Table';
-import Dropdown from '../Dropdown';
-import Search from '../Search';
-import { STATES } from './constants/states';
-import { GENRES } from './constants/genres';
+import React, { useState, useEffect } from "react";
+import Table from "../Table";
+import Dropdown from "../Dropdown";
+import Search from "../Search";
+import { STATES } from "./constants/states";
+import { GENRES } from "./constants/genres";
 
-const Main = () => {
-  const [restaurants, setRestaurants] = useState([]);
-  const [displayRestaurants, setDisplayRestaurants] = useState([]);
-  const [activeState, setActiveState] = useState('');
-  const [activeGenre, setActiveGenre] = useState('');
-  const [activeQuery, setActiveQuery] = useState('');
+const Main = ({ reduxUsaData, usaDataInfo, usaData,restaurants, setRestaurants,displayRestaurants, setDisplayRestaurants }) => {
+ 
+  const [activeState, setActiveState] = useState("");
+  const [activeGenre, setActiveGenre] = useState("");
+  const [activeQuery, setActiveQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
 
   const getRestaurants = async () => {
     setIsLoading(true);
-    const response = await fetch(
-      'https://code-challenge.spectrumtoolbox.com/api/restaurants',
-      {
-        headers: {
-          Authorization: 'Api-Key q3MNxtfep8Gt',
-        },
-      }
-    );
+    // const response = await fetch(
+    //   "https://code-challenge.spectrumtoolbox.com/api/restaurants",
+    //   {
+    //     headers: {
+    //       Authorization: "Api-Key q3MNxtfep8Gt",
+    //     },
+    //   }
+    // );
 
-    const data = await response.json();
+    await reduxUsaData();
+
+        const data = usaDataInfo;
     setIsLoading(false);
     const alphabetizedData = data.sort((a, b) => (a.name > b.name ? 1 : -1));
     setRestaurants(alphabetizedData);
     setDisplayRestaurants(alphabetizedData);
+    setIsLoading(true);
   };
+  // console.log("incomeingData==============", incomeingData && incomeingData);
 
-  const handleSelect = e => {
+  // useEffect(() => {
+  //   setIncomeingData(usaDataInfo);
+  // }, [usaDataInfo && usaDataInfo]);
+
+ 
+
+  // useEffect(() => {
+
+  //   const data = usaDataInfo;
+  //   setIsLoading(false);
+  //   const alphabetizedData = data.sort((a, b) => (a.name > b.name ? 1 : -1));
+  //   setRestaurants(alphabetizedData);
+  //   setDisplayRestaurants(alphabetizedData);
+  // }, [deepCopy && deepCopy]);
+
+
+
+  const handleSelect = (e) => {
     const targetValue = e.target.value;
     const category = e.target.name.toLowerCase();
-    if (category === 'state') {
+    if (category === "state") {
       setActiveState(targetValue);
-    } else if (category === 'genre') {
+    } else if (category === "genre") {
       setActiveGenre(targetValue);
     }
   };
 
-  const formHandler = value => {
+  const formHandler = (value) => {
     let normalizedValue = value.toLowerCase();
     setActiveQuery(normalizedValue);
   };
 
   const clearSearch = () => {
-    setActiveState('');
-    setActiveGenre('');
-    setActiveQuery('');
+    setActiveState("");
+    setActiveGenre("");
+    setActiveQuery("");
   };
 
-  const filterState = restaurant => {
+  const filterState = (restaurant) => {
     if (activeState) {
       return restaurant.state === activeState;
     } else {
@@ -60,7 +81,7 @@ const Main = () => {
     }
   };
 
-  const filterGenre = restaurant => {
+  const filterGenre = (restaurant) => {
     if (activeGenre) {
       return restaurant.genre.toLowerCase().includes(activeGenre);
     } else {
@@ -68,7 +89,7 @@ const Main = () => {
     }
   };
 
-  const filterSearch = restaurant => {
+  const filterSearch = (restaurant) => {
     if (activeQuery) {
       let normalizedName = restaurant.name.toLowerCase();
       let normalizedCity = restaurant.city.toLowerCase();
@@ -86,10 +107,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    getRestaurants();
-  }, []);
-
-  useEffect(() => {
     let result = restaurants.filter(filterState);
     result = result.filter(filterGenre);
     result = result.filter(filterSearch);
@@ -99,10 +116,10 @@ const Main = () => {
   return (
     <>
       <Search formHandler={formHandler} clearSearch={clearSearch} />
-      <Dropdown name={'State'} opts={STATES} selectHandler={handleSelect} />
-      <Dropdown name={'Genre'} opts={GENRES} selectHandler={handleSelect} />
+      <Dropdown name={"State"} opts={STATES} selectHandler={handleSelect} />
+      <Dropdown name={"Genre"} opts={GENRES} selectHandler={handleSelect} />
       <Table props={displayRestaurants} />
-      <h2>{isLoading ? 'LOADING....' : ''}</h2>
+      <h2>{isLoading ? "LOADING...." : ""}</h2>
     </>
   );
 };

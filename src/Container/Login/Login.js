@@ -10,9 +10,10 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-  //const navigate = useNavigate();
+  const history = useHistory();
 
   return (
     <>
@@ -38,9 +39,9 @@ const Login = () => {
                 .required("Email is required"),
               password: Yup.string().max(255).required("Password is required"),
             })}
-            // onSubmit={() => {
-            //   navigate('/app/dashboard', { replace: true });
-            // }}
+            onSubmit={() => {
+              history.push(`/HomePage`)
+            }}
           >
             {({
               errors,
